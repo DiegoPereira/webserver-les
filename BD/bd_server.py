@@ -6,6 +6,7 @@ from bd_agent import ServerData
 app = Flask(__name__)
 server_data = ServerData()
 
+
 @app.route('/get_db')
 def get_db():
     user_id = request.args.get('user_id')
@@ -16,14 +17,14 @@ def get_db():
 
 @app.route('/save_db')
 def save_db():
-    ano = request.args.get('ano')
-    atividade = request.args.get('atividade')
-    data = request.args.get('data')
-    prioridade = request.args.get('prioridade')
-    semanaDoAno = request.args.get('semanaDoAno')
-    tempo = request.args.get('tempo')
-    tipo = request.args.get('tipo')
-    user_id = request.args.get('user_id')
+    ano = json.dumps(request.args.get('ano'))
+    atividade = json.dumps(request.args.get('atividade'))
+    data = json.dumps(request.args.get('data'))
+    prioridade = json.dumps(request.args.get('prioridade'))
+    semanaDoAno = json.dumps(request.args.get('semanaDoAno'))
+    tempo = json.dumps(request.args.get('tempo'))
+    tipo = json.dumps(request.args.get('tipo'))
+    user_id = json.dumps(request.args.get('user_id'))
     
     status = server_data.insert_bd(ano,atividade,data,prioridade,semanaDoAno, tempo, tipo, user_id)
     
